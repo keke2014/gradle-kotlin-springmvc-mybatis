@@ -1,0 +1,3 @@
+rootProject.name = 'gradle-taste'
+include 'gradle-taste-web'
+

@@ -1,0 +1,49 @@
+group 'com.jukezhang.gradle-taste'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    task hello << { task -> println "I'm $task.project.name"}
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.5
+
+    repositories {
+        //mavenCentral()
+        mavenLocal()
+        maven {
+            url 'http://maven.oschina.net/content/groups/public/'
+            //url 'http://repo.spring.io/release'
+        }
+    }
+
+    dependencies {
+        //testCompile group: 'junit', name: 'junit', version: '4.11'
+        testCompile 'junit:junit:4+'
+
+        // spring
+        compile("org.springframework:spring-context:4.2.5.RELEASE",
+                "org.springframework:spring-web:4.2.5.RELEASE",
+                "org.springframework:spring-webmvc:4.2.5.RELEASE")
+        testCompile("org.springframework:spring-test:4.2.5.RELEASE")
+
+        // velocity
+        compile("org.springframework:spring-context-support:4.2.5.RELEASE",
+                "org.apache.velocity:velocity:1.7",
+                "org.apache.velocity:velocity-tools:2.0",
+                /*"org.anarres.gradle:gradle-velocity-plugin:1.0.0"*/)
+
+        // tools
+        compile('org.projectlombok:lombok:1.14.8')
+    }
+}
+
+project(':gradle-taste-web') {
+    apply plugin: 'war'
+
+    dependencies {
+        compile 'joda-time:joda-time:2.9'
+        compile 'javax.servlet:servlet-api:2.5'
+    }
+}
