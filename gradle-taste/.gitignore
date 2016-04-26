@@ -1,0 +1,6 @@
+.gradle/
+.idea/
+classes/
+gradle-taste-web/build/
+gradle-taste-web/gradle-taste-web.iml
+gradle-taste.iml
