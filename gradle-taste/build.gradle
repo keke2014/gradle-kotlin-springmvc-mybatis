@@ -5,11 +5,30 @@ allprojects {
     task hello << { task -> println "I'm $task.project.name"}
 }
 
-subprojects {
-    apply plugin: 'java'
-    sourceCompatibility = 1.5
+def spring_version = '4.2.5.RELEASE'
+//def kotlin_version = '1.0.1'
+
+// for kotlin
+buildscript {
+    ext.kotlin_version = '1.0.1-2'
 
     repositories {
+        jcenter()
+        //mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    apply plugin: 'kotlin'
+
+    repositories {
+        jcenter() // for kotlin
         //mavenCentral()
         mavenLocal()
         maven {
@@ -23,19 +42,22 @@ subprojects {
         testCompile 'junit:junit:4+'
 
         // spring
-        compile("org.springframework:spring-context:4.2.5.RELEASE",
-                "org.springframework:spring-web:4.2.5.RELEASE",
-                "org.springframework:spring-webmvc:4.2.5.RELEASE")
-        testCompile("org.springframework:spring-test:4.2.5.RELEASE")
+        compile("org.springframework:spring-context:$spring_version",
+                "org.springframework:spring-web:$spring_version",
+                "org.springframework:spring-webmvc:$spring_version")
+        testCompile("org.springframework:spring-test:$spring_version")
 
         // velocity
-        compile("org.springframework:spring-context-support:4.2.5.RELEASE",
+        compile("org.springframework:spring-context-support:$spring_version",
                 "org.apache.velocity:velocity:1.7",
                 "org.apache.velocity:velocity-tools:2.0",
                 /*"org.anarres.gradle:gradle-velocity-plugin:1.0.0"*/)
 
         // tools
         compile('org.projectlombok:lombok:1.14.8')
+
+        // kotlin
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     }
 }
 
