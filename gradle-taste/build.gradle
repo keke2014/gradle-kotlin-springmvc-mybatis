@@ -10,14 +10,21 @@ def spring_version = '4.2.5.RELEASE'
 
 // for kotlin
 buildscript {
-    ext.kotlin_version = '1.0.1-2'
+    ext {
+        kotlin_version = '1.0.1-2'
+    }
 
     repositories {
-        jcenter()
+        //jcenter()
         //mavenCentral()
+        mavenLocal()
+        maven {
+            url 'http://maven.oschina.net/content/groups/public/'
+            //url 'http://repo.spring.io/release'
+        }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
     }
 }
 
@@ -28,7 +35,7 @@ subprojects {
     apply plugin: 'kotlin'
 
     repositories {
-        jcenter() // for kotlin
+        //jcenter() // for kotlin
         //mavenCentral()
         mavenLocal()
         maven {
