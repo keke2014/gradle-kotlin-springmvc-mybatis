@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+        default-autowire="byName">
+
+    <bean id="service" class="spring.impls.ServiceImpl">
+        <!--<property name="user" ref="user"/>-->
+    </bean>
+
+    <bean id="user" class="spring.DAOs.User">
+        <property name="name" value="jukezhang"/>
+        <property name="age" value="29"/>
+    </bean>
+
+</beans>
