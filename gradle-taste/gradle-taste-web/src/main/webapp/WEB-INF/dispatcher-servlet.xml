@@ -8,13 +8,13 @@
     <context:component-scan base-package="controller"/>
 
     <!--jsp view-->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
 
     <!--vm(velocity) view-->
-    <!--<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/vm"/>
         <property name= "velocityProperties">
             <props>
@@ -25,9 +25,10 @@
     </bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        &lt;!&ndash;<property name="prefix" value="/vm/"/>&ndash;&gt;
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
         <property name="suffix" value=".vm"/>
-        <property name="contentType" value="text/html;charset=utf-8"/> &lt;!&ndash; 设置编码格式 &ndash;&gt;
-    </bean>-->
+        <property name="contentType" value="text/html;charset=utf-8"/>
+    </bean>
 
 </beans>
